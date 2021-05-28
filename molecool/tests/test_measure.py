@@ -45,3 +45,13 @@ def test_calculate_angle_60():
 
     assert pytest.approx(expected_angle) == calculated_angle
 
+coordinate_parameter_list = [
+    (np.array([0,0,-1]), np.array([0,0,0]), np.array([1,0,0]), 90),
+    (np.array([0,0,-1]), np.array([0,1,0]), np.array([1,0,0]), 60)
+]
+
+@pytest.mark.parametrize("r1, r2, r3, expected_angle", coordinate_parameter_list)
+def test_calculate_angle_many(r1, r2, r3, expected_angle):
+    calculated_angle = molecool.calculate_angle(r1, r2, r3, True)
+
+    assert pytest.approx(calculated_angle) == expected_angle
